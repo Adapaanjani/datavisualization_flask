@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pie Charts</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='static/pie.css') }}">
+</head>
+<body>
+    <h1 class="dynamic-heading">Pie Charts</h1>
+    {% for chart in pie_charts %}
+    <div class="chart-container">
+        <div class="chart-box">
+            <!-- Each pie chart will be displayed dynamically -->
+            {{ chart | safe }}
+        </div>
+    </div>
+    {% endfor %}
+
+    <!-- Include JQuery (Add this script before the custom script) -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
+    <!-- Custom Script for dynamic changes -->
+    <script>
+        // Example of dynamically changing the chart container background color
+        $(document).ready(function() {
+            $(".chart-container").each(function(index) {
+                if (index % 2 === 0) {
+                    $(this).addClass("chart-container-even");
+                } else {
+                    $(this).addClass("chart-container-odd");
+                }
+            });
+        });
+    </script>
+</body>
+</html>
